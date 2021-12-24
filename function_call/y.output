@@ -1,0 +1,318 @@
+Terminals unused in grammar
+
+   DEF_VOID
+   EQ
+   END
+
+
+Grammar
+
+    0 $accept: line_list $end
+
+    1 line_list: line
+    2          | line_list line
+
+    3 line: DEF_INT FUNCNAME INPUT S FUNCNAME INPUT CR E
+    4     | DEF_DOUBLE FUNCNAME INPUT S FUNCNAME INPUT CR E
+    5     | DEF_CHAR FUNCNAME INPUT S FUNCNAME INPUT CR E
+    6     | DEF_BOOL FUNCNAME INPUT S FUNCNAME INPUT CR E
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+FUNCNAME (258) 3 4 5 6
+INPUT (259) 3 4 5 6
+DEF_INT (260) 3
+DEF_DOUBLE (261) 4
+DEF_CHAR (262) 5
+DEF_BOOL (263) 6
+DEF_VOID (264)
+S (265) 3 4 5 6
+E (266) 3 4 5 6
+EQ (267)
+END (268)
+CR (269) 3 4 5 6
+
+
+Nonterminals, with rules where they appear
+
+$accept (15)
+    on left: 0
+line_list (16)
+    on left: 1 2, on right: 0 2
+line (17)
+    on left: 3 4 5 6, on right: 1 2
+
+
+state 0
+
+    0 $accept: . line_list $end
+
+    DEF_INT     shift, and go to state 1
+    DEF_DOUBLE  shift, and go to state 2
+    DEF_CHAR    shift, and go to state 3
+    DEF_BOOL    shift, and go to state 4
+
+    line_list  go to state 5
+    line       go to state 6
+
+
+state 1
+
+    3 line: DEF_INT . FUNCNAME INPUT S FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 7
+
+
+state 2
+
+    4 line: DEF_DOUBLE . FUNCNAME INPUT S FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 8
+
+
+state 3
+
+    5 line: DEF_CHAR . FUNCNAME INPUT S FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 9
+
+
+state 4
+
+    6 line: DEF_BOOL . FUNCNAME INPUT S FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 10
+
+
+state 5
+
+    0 $accept: line_list . $end
+    2 line_list: line_list . line
+
+    $end        shift, and go to state 11
+    DEF_INT     shift, and go to state 1
+    DEF_DOUBLE  shift, and go to state 2
+    DEF_CHAR    shift, and go to state 3
+    DEF_BOOL    shift, and go to state 4
+
+    line  go to state 12
+
+
+state 6
+
+    1 line_list: line .
+
+    $default  reduce using rule 1 (line_list)
+
+
+state 7
+
+    3 line: DEF_INT FUNCNAME . INPUT S FUNCNAME INPUT CR E
+
+    INPUT  shift, and go to state 13
+
+
+state 8
+
+    4 line: DEF_DOUBLE FUNCNAME . INPUT S FUNCNAME INPUT CR E
+
+    INPUT  shift, and go to state 14
+
+
+state 9
+
+    5 line: DEF_CHAR FUNCNAME . INPUT S FUNCNAME INPUT CR E
+
+    INPUT  shift, and go to state 15
+
+
+state 10
+
+    6 line: DEF_BOOL FUNCNAME . INPUT S FUNCNAME INPUT CR E
+
+    INPUT  shift, and go to state 16
+
+
+state 11
+
+    0 $accept: line_list $end .
+
+    $default  accept
+
+
+state 12
+
+    2 line_list: line_list line .
+
+    $default  reduce using rule 2 (line_list)
+
+
+state 13
+
+    3 line: DEF_INT FUNCNAME INPUT . S FUNCNAME INPUT CR E
+
+    S  shift, and go to state 17
+
+
+state 14
+
+    4 line: DEF_DOUBLE FUNCNAME INPUT . S FUNCNAME INPUT CR E
+
+    S  shift, and go to state 18
+
+
+state 15
+
+    5 line: DEF_CHAR FUNCNAME INPUT . S FUNCNAME INPUT CR E
+
+    S  shift, and go to state 19
+
+
+state 16
+
+    6 line: DEF_BOOL FUNCNAME INPUT . S FUNCNAME INPUT CR E
+
+    S  shift, and go to state 20
+
+
+state 17
+
+    3 line: DEF_INT FUNCNAME INPUT S . FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 21
+
+
+state 18
+
+    4 line: DEF_DOUBLE FUNCNAME INPUT S . FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 22
+
+
+state 19
+
+    5 line: DEF_CHAR FUNCNAME INPUT S . FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 23
+
+
+state 20
+
+    6 line: DEF_BOOL FUNCNAME INPUT S . FUNCNAME INPUT CR E
+
+    FUNCNAME  shift, and go to state 24
+
+
+state 21
+
+    3 line: DEF_INT FUNCNAME INPUT S FUNCNAME . INPUT CR E
+
+    INPUT  shift, and go to state 25
+
+
+state 22
+
+    4 line: DEF_DOUBLE FUNCNAME INPUT S FUNCNAME . INPUT CR E
+
+    INPUT  shift, and go to state 26
+
+
+state 23
+
+    5 line: DEF_CHAR FUNCNAME INPUT S FUNCNAME . INPUT CR E
+
+    INPUT  shift, and go to state 27
+
+
+state 24
+
+    6 line: DEF_BOOL FUNCNAME INPUT S FUNCNAME . INPUT CR E
+
+    INPUT  shift, and go to state 28
+
+
+state 25
+
+    3 line: DEF_INT FUNCNAME INPUT S FUNCNAME INPUT . CR E
+
+    CR  shift, and go to state 29
+
+
+state 26
+
+    4 line: DEF_DOUBLE FUNCNAME INPUT S FUNCNAME INPUT . CR E
+
+    CR  shift, and go to state 30
+
+
+state 27
+
+    5 line: DEF_CHAR FUNCNAME INPUT S FUNCNAME INPUT . CR E
+
+    CR  shift, and go to state 31
+
+
+state 28
+
+    6 line: DEF_BOOL FUNCNAME INPUT S FUNCNAME INPUT . CR E
+
+    CR  shift, and go to state 32
+
+
+state 29
+
+    3 line: DEF_INT FUNCNAME INPUT S FUNCNAME INPUT CR . E
+
+    E  shift, and go to state 33
+
+
+state 30
+
+    4 line: DEF_DOUBLE FUNCNAME INPUT S FUNCNAME INPUT CR . E
+
+    E  shift, and go to state 34
+
+
+state 31
+
+    5 line: DEF_CHAR FUNCNAME INPUT S FUNCNAME INPUT CR . E
+
+    E  shift, and go to state 35
+
+
+state 32
+
+    6 line: DEF_BOOL FUNCNAME INPUT S FUNCNAME INPUT CR . E
+
+    E  shift, and go to state 36
+
+
+state 33
+
+    3 line: DEF_INT FUNCNAME INPUT S FUNCNAME INPUT CR E .
+
+    $default  reduce using rule 3 (line)
+
+
+state 34
+
+    4 line: DEF_DOUBLE FUNCNAME INPUT S FUNCNAME INPUT CR E .
+
+    $default  reduce using rule 4 (line)
+
+
+state 35
+
+    5 line: DEF_CHAR FUNCNAME INPUT S FUNCNAME INPUT CR E .
+
+    $default  reduce using rule 5 (line)
+
+
+state 36
+
+    6 line: DEF_BOOL FUNCNAME INPUT S FUNCNAME INPUT CR E .
+
+    $default  reduce using rule 6 (line)
