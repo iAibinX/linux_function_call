@@ -1,0 +1,11 @@
+digraph G{
+	rankdir=LR;
+	size="800,600";
+	node [fontsize=10,fontcolor=red,style=filled,fillcolor=lightblue];
+	"main() <int main () at test.c:19>:" -> "a() <void a () at test.c:3>:";
+	"main() <int main () at test.c:19>:" -> "b() <void b () at test.c:7>:";
+	"main() <int main () at test.c:19>:" -> "c() <void c () at test.c:11>:";
+	"a() <void a () at test.c:3>:" -> "c() <void c () at test.c:11>:";
+	"c() <void c () at test.c:11>:" -> "d() <void d () at test.c:15>";
+	"c() <void c () at test.c:11>:" -> "d() <void d () at test.c:15>";
+}
